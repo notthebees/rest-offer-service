@@ -15,6 +15,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,6 +30,18 @@ public class OfferControllerTest {
 
     @MockBean
     private OfferRepository offerRepository;
+
+    @Test
+    public void deletesOffer() throws Exception {
+        String description = "Offer";
+        int price = 50;
+        Offer offer = new Offer(description, price);
+
+        when(offerRepository.findOne(1L)).thenReturn(offer);
+
+        mockMvc.perform(delete("/offers/1"))
+                .andExpect(status().isOk());
+    }
 
     @Test
     public void postsNewOffer() throws Exception {

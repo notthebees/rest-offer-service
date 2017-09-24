@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -46,5 +47,12 @@ public class OfferController {
                 .buildAndExpand(result.getId()).toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @RequestMapping(method = DELETE, value = "/{id}")
+    public @ResponseBody Offer deleteOffer(@PathVariable("id") long id) {
+        Offer offer = offerRepository.findOne(id);
+        offerRepository.delete(id);
+        return offer;
     }
 }
