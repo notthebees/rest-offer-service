@@ -12,8 +12,11 @@ import java.util.ArrayList;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -26,6 +29,18 @@ public class OfferControllerTest {
 
     @MockBean
     private OfferRepository offerRepository;
+
+    @Test
+    public void postsNewOffer() throws Exception {
+        when(offerRepository.save(any(Offer.class)))
+                .thenReturn(new Offer() {{setId(1);}});
+
+        mockMvc.perform(post("/offers")
+                .accept(APPLICATION_JSON)
+                .contentType(APPLICATION_JSON)
+                .content("{\"description\":\"Offer\",\"price\":50}"))
+                .andExpect(status().isCreated());
+    }
 
     @Test
     public void throwsExceptionIfOfferNotFound() throws Exception {
