@@ -32,6 +32,12 @@ public class OfferControllerTest {
     private OfferRepository offerRepository;
 
     @Test
+    public void deleteThrowsExceptionIfOfferNotFound() throws Exception {
+        mockMvc.perform(delete("/offers/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void deletesOffer() throws Exception {
         String description = "Offer";
         int price = 50;
@@ -56,7 +62,7 @@ public class OfferControllerTest {
     }
 
     @Test
-    public void throwsExceptionIfOfferNotFound() throws Exception {
+    public void getThrowsExceptionIfOfferNotFound() throws Exception {
         mockMvc.perform(get("/offers/1"))
                 .andExpect(status().isNotFound());
     }

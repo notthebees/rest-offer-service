@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @Controller
 @RequestMapping("/offers")
@@ -52,7 +49,11 @@ public class OfferController {
     @RequestMapping(method = DELETE, value = "/{id}")
     public @ResponseBody Offer deleteOffer(@PathVariable("id") long id) {
         Offer offer = offerRepository.findOne(id);
-        offerRepository.delete(id);
-        return offer;
+        if (offer == null) {
+            throw new OfferNotFoundException(id);
+        } else {
+            offerRepository.delete(id);
+            return offer;
+        }
     }
 }
