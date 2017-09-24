@@ -22,6 +22,11 @@ public class OfferController {
 
     @RequestMapping(method = GET, value = "/{id}")
     public @ResponseBody Offer getOffer(@PathVariable("id") long id) {
-        return offerRepository.findOne(id);
+        Offer offer = offerRepository.findOne(id);
+        if (offer == null) {
+            throw new OfferNotFoundException(id);
+        } else {
+            return offer;
+        }
     }
 }

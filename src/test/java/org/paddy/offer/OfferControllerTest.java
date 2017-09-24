@@ -28,7 +28,13 @@ public class OfferControllerTest {
     private OfferRepository offerRepository;
 
     @Test
-    public void getAllOffers() throws Exception {
+    public void throwsExceptionIfOfferNotFound() throws Exception {
+        mockMvc.perform(get("/offers/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getsAllOffers() throws Exception {
         String description1 = "Offer 1";
         String description2 = "Offer 2";
         int price1 = 50;
@@ -48,7 +54,7 @@ public class OfferControllerTest {
     }
 
     @Test
-    public void getOffer() throws Exception {
+    public void getsOffer() throws Exception {
         String description = "Offer";
         int price = 50;
         Offer offer = new Offer(description, price);
