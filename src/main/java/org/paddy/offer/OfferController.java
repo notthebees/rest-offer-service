@@ -15,8 +15,13 @@ public class OfferController {
     @Autowired
     private OfferRepository offerRepository;
 
+    @RequestMapping(method = GET)
+    public @ResponseBody Iterable<Offer> getAllOffers() {
+        return offerRepository.findAll();
+    }
+
     @RequestMapping(method = GET, value = "/{id}")
-    public @ResponseBody Offer getOfferById(@PathVariable("id") long id) {
+    public @ResponseBody Offer getOffer(@PathVariable("id") long id) {
         return offerRepository.findOne(id);
     }
 }
