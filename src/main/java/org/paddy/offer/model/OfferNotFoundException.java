@@ -1,13 +1,13 @@
-package org.paddy.offer;
+package org.paddy.offer.model;
 
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @ResponseStatus(NOT_FOUND)
-class OfferNotFoundException extends RuntimeException {
+public class OfferNotFoundException extends RuntimeException {
 
-    OfferNotFoundException(Long id) {
+    public OfferNotFoundException(Long id) {
         super("Could not find offer " + id + ".");
     }
 }

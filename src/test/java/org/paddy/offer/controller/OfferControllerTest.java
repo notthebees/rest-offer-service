@@ -1,7 +1,9 @@
-package org.paddy.offer;
+package org.paddy.offer.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.paddy.offer.model.Offer;
+import org.paddy.offer.repository.OfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

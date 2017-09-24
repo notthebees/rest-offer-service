@@ -1,5 +1,8 @@
-package org.paddy.offer;
+package org.paddy.offer.controller;
 
+import org.paddy.offer.repository.OfferRepository;
+import org.paddy.offer.model.Offer;
+import org.paddy.offer.model.OfferNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

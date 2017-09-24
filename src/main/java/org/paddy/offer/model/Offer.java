@@ -1,4 +1,4 @@
-package org.paddy.offer;
+package org.paddy.offer.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 @Entity
 public class Offer {
 
