@@ -42,7 +42,7 @@ public class OfferControllerTest {
     @Test
     public void deletesOffer() throws Exception {
         String description = "Offer";
-        int price = 50;
+        double price = 9.99;
         Offer offer = new Offer(description, price);
 
         when(offerRepository.findOne(1L)).thenReturn(offer);
@@ -59,7 +59,7 @@ public class OfferControllerTest {
         mockMvc.perform(post("/offers")
                 .accept(APPLICATION_JSON)
                 .contentType(APPLICATION_JSON)
-                .content("{\"description\":\"Offer\",\"price\":50}"))
+                .content("{\"description\":\"Offer\",\"price\":9.99}"))
                 .andExpect(status().isCreated());
     }
 
@@ -73,8 +73,8 @@ public class OfferControllerTest {
     public void getsAllOffers() throws Exception {
         String description1 = "Offer 1";
         String description2 = "Offer 2";
-        int price1 = 50;
-        int price2 = 100;
+        double price1 = 9.99;
+        double price2 = 5;
         Offer offer1 = new Offer(description1, price1);
         Offer offer2 = new Offer(description2, price2);
         ArrayList<Offer> offers = newArrayList(offer1, offer2);
@@ -92,7 +92,7 @@ public class OfferControllerTest {
     @Test
     public void getsOffer() throws Exception {
         String description = "Offer";
-        int price = 50;
+        double price = 9.99;
         Offer offer = new Offer(description, price);
 
         when(offerRepository.findOne(1L)).thenReturn(offer);

@@ -22,7 +22,7 @@ public class Offer {
     private String description;
 
     @Column
-    private int price;
+    private double price;
 
 
     protected Offer() {
@@ -30,7 +30,7 @@ public class Offer {
     }
 
     @JsonCreator
-    public Offer(@JsonProperty("description") String description, @JsonProperty("price") int price) {
+    public Offer(@JsonProperty("description") String description, @JsonProperty("price") double price) {
         this.description = description;
         this.price = price;
     }
@@ -51,11 +51,11 @@ public class Offer {
         this.description = description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

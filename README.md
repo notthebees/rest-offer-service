@@ -11,4 +11,4 @@ Accepts JSON content of form
 ```
 {"description": $DESCRIPTION, "price": $PRICE}
 ```
-where `DESCRIPTION` is a string and `PRICE` is an integer.
+where `DESCRIPTION` is text and `PRICE` is a decimal.
